@@ -1,5 +1,8 @@
 import requests
 import smtplib
+import warnings
+
+warnings.filterwarnings('ignore')
 
 # Read URLs from sitelist.txt
 with open('sitelist.txt', 'r') as file:
@@ -14,8 +17,9 @@ down_websites = []
 # Check website status
 for url in urls:
     try:
-        response = requests.get(url)
-        if response.status_code != 200:
+        response = requests.get(url, verify = False)
+        response_code = response.status_code
+        if response_code not in [200, 301, 302]:
             down_websites.append(url)
     except requests.exceptions.RequestException:
         down_websites.append(url)
@@ -26,16 +30,16 @@ if down_websites:
     message += "\n".join(down_websites)
 
     # Connect to SMTP server
-    server = smtplib.SMTP('your_smtp_server', 587)
+    server = smtplib.SMTP('YOUR_SMTP_SERVER_HERE', 587)
 
     # Start TLS encryption
     server.starttls()
 
     # Login to SMTP server
-    server.login('your_username', 'your_password')
+    server.login('SMTP_LOGIN_ID', 'SMTP_LOGIN_PASSWORD')
 
     # Send email
-    sender_email = 'your_email_address'
+    sender_email = 'SENDER_EMAIL_ADDRESS'
     subject = 'Website Down Notification'
     body = f'Subject: {subject}\n\n{message}'
     for receiver_email in email_addresses:
