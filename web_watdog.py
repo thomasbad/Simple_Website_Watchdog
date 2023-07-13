@@ -5,11 +5,11 @@ import warnings
 warnings.filterwarnings('ignore')
 
 # Read URLs from sitelist.txt
-with open('sitelist.txt', 'r') as file:
+with open('YOUR_FILE_LOCATION_HERE/sitelist.txt', 'r') as file:
     urls = file.read().splitlines()
 
 # Read email addresses from email.txt
-with open('email.txt', 'r') as file:
+with open('YOUR_FILE_LOCATION_HERE/email.txt', 'r') as file:
     email_addresses = file.read().splitlines()
 
 down_websites = []
