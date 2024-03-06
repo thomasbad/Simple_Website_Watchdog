@@ -15,7 +15,7 @@ server.login('SMTP_LOGIN_ID', 'SMTP_LOGIN_PASSWORD')
 ```
 sender_email = 'SENDER_EMAIL_ADDRESS'
 ```
-& esit these two file's location:
+& edit these two file's location:
 ```
 with open('YOUR_FILE_LOCATION_HERE/sitelist.txt', 'r') as file:
 with open('YOUR_FILE_LOCATION_HERE/email.txt', 'r') as file:
